@@ -131,7 +131,7 @@ function addLibro(id, titulo, autor, año, genero) {
 addLibro(11, "Ana la de tejas verdes", "Lucy Maud", 1908, "Literatura juvenil");
  */
 //2b
-function buscarLibro(criterio, valor) {
+/* function buscarLibro(criterio, valor) {
   criterio = criterio.toLowerCase();
   valor = valor.toLowerCase();
   const libro = libros.find((libro) => {
@@ -147,8 +147,20 @@ function buscarLibro(criterio, valor) {
   return libro ? libro : "No encontrado :(";
 }
 console.log(buscarLibro("titulo", "Lolita"));
-console.log(buscarLibro('genero',''))
-//3
+console.log(buscarLibro('genero','biografico')) */
+//2d
+/* function borrarLibro(id){
+  let indice =libros.findIndex(libro => libro.id === id);
+  if (indice !== -1){
+    libros.splice(indice, 1);
+    console.log(`libro id:${id} eliminado.`)
+  } else{
+    console.log(`el libro solicitado ${id} no se encontro`)
+  }
+}
+borrarLibro(1);
+console.log(libros); */
+//3a
 /* function RegistrarUsuario(nombre, email) {
   let newUser = {
     nombre: nombre,
@@ -192,3 +204,53 @@ if (!userEliminado){
 }
 borrarUser("Lucia Jones",'lucia@gmail.com');
 console.log(usuarios); */
+//4a a)	Desarrollar una función prestarLibro(idLibro, idUsuario) que marque un libro como no disponible y
+// lo agregue a la lista de libros prestados del usuario. Luego mostrar que libro se prestó y a que usuario.
+/* function prestarLibro(idLibro, idUsuario) {
+  let libro = libros.find((libro) => libro.is === idLibro);
+  let usuario = usuarios.find((user) => user.id === idUsuario);
+  if (!libro) {
+    console.log(`El libro ${idLibro} no se encontro`);
+    return;
+  }
+  if (!usuario) {
+    console.log(`Usuario ${idUsuario} no se encontro`);
+  }
+  if (!libro.disponible) {
+    console.log(`El libro ${libro.título} no esta disponible`);
+    return;
+  }
+  libro.disponible = false;
+  usuario.librosPrestados.push(libro);
+  console.log(`el libro ${libro.título}fue prestado a ${usuario.nombre}`);
+}
+prestarLibro(1,1);
+console.log(usuarios[0]);
+ */
+//4b b)	Implementar una función devolverLibro(idLibro, idUsuario) que marque un
+// libro como disponible y lo elimine de la lista de libros prestados del usuario.
+/* function devolverLibro(idLibro, idUsuario){
+  let libro= libros.find(libro => libro.id === idLibro);
+  let usuario =usuarios.find(user => user.id === idUsuario);
+  if(!libro){
+    console.log(`libro ${idLibro} no encontrado`);
+    return;
+  }
+  if(!usuario){
+    console.log(`usuario ${idUsuario} mo encontrado`);
+    return;
+  }
+  let iLibrosPrestados = usuario.librosPrestados.findIndex(libro => libro.id === idLibro);
+  if(iLibrosPrestados === -1){
+    console.log(`el usuario ${usuario.nombre} no tiene el libro ${idLibro}`);
+    return;
+  }
+usuario.librosPrestados.splice(iLibrosPrestados, 1);
+libro.disponible= true;
+console.log(`El libro ${libro.título} lo devolvio ${usuario.nombre}`)
+}
+
+devolverLibro(2, 1);
+console.log(usuarios[0]);
+console.log(libros);
+ */
