@@ -59,7 +59,7 @@ const libros = [
   },
   {
     id: 8,
-    título: "El principito",
+    titulo: "El principito",
     autor: "Antoine de Saint-Exupéry",
     anio: 1943,
     genero: "Novela",
@@ -67,7 +67,7 @@ const libros = [
   },
   {
     id: 9,
-    título: "Lo que el viento se llevó",
+    titulo: "Lo que el viento se llevó",
     autor: "Margaret Mitchell",
     año: 1963,
     genero: "Ficcion historica",
@@ -288,13 +288,17 @@ generarReporteLibros(); */
 /* 6 a)	Implementar una función librosConPalabrasEnTitulo() que identifique y muestre 
 los títulos de los libros que contienen más de una palabra. Además la función debe excluir 
 aquellos títulos que contengan números y/o caracteres especiales. Por último mostrar en la consola el array resultante.  */
-function librosConPalabrasEnTitulo (){
-  let resultado = libros.filter(libro=>{
-    let titulo = libro.titulo.trim();
-    let tieneMasDeUnaPalabra = titulo.split(" ").length > 1;
-    let esValido = /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/.test(titulo);
-    return tieneMasDeUnaPalabra && esValido;
-  }).map(libro => libro.titulo);
+function librosConPalabrasEnTitulo() {
+  let resultado = libros
+    .filter((libro) => {
+      if (!libro.titulo) return false;
+      const titulo = libro.titulo;
+      let tieneMasDeUnaPalabra = titulo.split(" ").length > 1;
+      let esValido = /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/.test(titulo);
+      return tieneMasDeUnaPalabra && esValido;
+    })
+
+    .map((libro) => libro.titulo);
   console.log(`Titulos validos con mas de una palabra:`);
   console.log(resultado);
 }
