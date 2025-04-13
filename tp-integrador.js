@@ -3,66 +3,66 @@
 const libros = [
   {
     id: 1,
-    título: "Lolita",
+    titulo: "Lolita",
     autor: "Vladimir Nabokov",
-    año: 1955,
-    género: "novela",
+    anio: 1955,
+    genero: "Novela",
     disponible: false,
   },
   {
     id: 2,
-    título: "Crepúsculo",
+    titulo: "Crepúsculo",
     autor: "Stephenie Meyer",
-    año: 2005,
-    género: "Ficcion romantica",
+    anio: 2005,
+    genero: "Ficcion romantica",
     disponible: true,
   },
   {
     id: 3,
-    título: "Maus",
+    titulo: "Maus",
     autor: "Art Spiegelman",
-    año: 1977,
-    género: "Biografico",
+    anio: 1977,
+    genero: "Biografico",
     disponible: true,
   },
   {
     id: 4,
-    título: "El mar y la serpiente",
+    titulo: "El mar y la serpiente",
     autor: "Paula Bombara",
-    año: 2005,
-    género: "Novela",
+    anio: 2005,
+    genero: "Novela",
     disponible: false,
   },
   {
     id: 5,
-    título: "Rayuela",
+    titulo: "Rayuela",
     autor: "Julio cortazar",
-    año: 1963,
-    género: "Novela",
+    anio: 1963,
+    genero: "Novela",
     disponible: false,
   },
   {
     id: 6,
-    título: "La metamorfosis",
+    titulo: "La metamorfosis",
     autor: "Franz Kafka",
-    año: 1915,
-    género: "Narrativo",
+    anio: 1915,
+    genero: "Narrativo",
     disponible: false,
   },
   {
     id: 7,
-    título: "Coraline",
+    titulo: "Coraline",
     autor: "Neil Gaiman",
-    año: 2002,
-    género: "Literatura fantastica",
+    anio: 2002,
+    genero: "Literatura fantastica",
     disponible: true,
   },
   {
     id: 8,
     título: "El principito",
     autor: "Antoine de Saint-Exupéry",
-    año: 1943,
-    género: "Novela",
+    anio: 1943,
+    genero: "Novela",
     disponible: false,
   },
   {
@@ -70,15 +70,15 @@ const libros = [
     título: "Lo que el viento se llevó",
     autor: "Margaret Mitchell",
     año: 1963,
-    género: "Ficcion historica",
+    genero: "Ficcion historica",
     disponible: true,
   },
   {
     id: 10,
-    título: "Memorias de una geisha",
+    titulo: "Memorias de una geisha",
     autor: "Arthur Golden",
-    año: 1997,
-    género: "Novela",
+    anio: 1997,
+    genero: "Novela",
     disponible: true,
   },
 ];
@@ -122,7 +122,7 @@ function addLibro(id, titulo, autor, año, genero) {
     id: id,
     titulo: titulo,
     autor: autor,
-    año: año,
+    anio: anio,
     genero: genero,
     disponible: true,
   };
@@ -217,12 +217,12 @@ console.log(usuarios); */
     console.log(`Usuario ${idUsuario} no se encontro`);
   }
   if (!libro.disponible) {
-    console.log(`El libro ${libro.título} no esta disponible`);
+    console.log(`El libro ${libro.titulo} no esta disponible`);
     return;
   }
   libro.disponible = false;
   usuario.librosPrestados.push(libro);
-  console.log(`el libro ${libro.título}fue prestado a ${usuario.nombre}`);
+  console.log(`el libro ${libro.titulo}fue prestado a ${usuario.nombre}`);
 }
 prestarLibro(1,1);
 console.log(usuarios[0]);
@@ -247,10 +247,55 @@ console.log(usuarios[0]);
   }
 usuario.librosPrestados.splice(iLibrosPrestados, 1);
 libro.disponible= true;
-console.log(`El libro ${libro.título} lo devolvio ${usuario.nombre}`)
+console.log(`El libro ${libro.titulo} lo devolvio ${usuario.nombre}`)
 }
 
 devolverLibro(2, 1);
 console.log(usuarios[0]);
 console.log(libros);
  */
+/* 5 a)	Crear una función generarReporteLibros() que utilice métodos avanzados de arrays (.map(), .filter(), .reduce()) para generar un reporte con la siguiente información:
+✔	Cantidad total de librosd.
+✔	Cantidad de libros prestados.
+✔	Cantidad de libros por género.
+✔	Libro más antiguo y más nuevo
+ */
+/* function generarReporteLibros() {
+  let totalLibros = libros.length;
+  let librosPrestados = libros.filter((libro) => !libro.disponible).length;
+  let librosPorGenero = libros.reduce((ac, libro) => {
+    ac[libro.genero] = (ac[libro.genero] || 0) + 1;
+    return ac;
+  }, {});
+  let libroMasAntiguo = libros.reduce((masAntiguo, libro) =>
+    libro.anio < masAntiguo.anio ? libro : masAntiguo
+  );
+  let libroMasNuevo = libros.reduce((masNuevo, libro) =>
+    libro.anio > masNuevo.anio ? libro : masNuevo
+  );
+  let reporte = {
+    totalLibros,
+    librosPorGenero,
+    librosPrestados,
+    libroMasAntiguo: `${libroMasAntiguo.titulo}(${libroMasAntiguo.anio})`,
+    libroMasNuevo: `${libroMasNuevo.titulo}(${libroMasNuevo.anio})`
+  };
+  console.log("Reporte de los libros:");
+  console.log(reporte);
+  return reporte;
+}
+generarReporteLibros(); */
+/* 6 a)	Implementar una función librosConPalabrasEnTitulo() que identifique y muestre 
+los títulos de los libros que contienen más de una palabra. Además la función debe excluir 
+aquellos títulos que contengan números y/o caracteres especiales. Por último mostrar en la consola el array resultante.  */
+function librosConPalabrasEnTitulo (){
+  let resultado = libros.filter(libro=>{
+    let titulo = libro.titulo.trim();
+    let tieneMasDeUnaPalabra = titulo.split(" ").length > 1;
+    let esValido = /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/.test(titulo);
+    return tieneMasDeUnaPalabra && esValido;
+  }).map(libro => libro.titulo);
+  console.log(`Titulos validos con mas de una palabra:`);
+  console.log(resultado);
+}
+librosConPalabrasEnTitulo();
