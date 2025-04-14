@@ -116,7 +116,7 @@ const usuarios = [
   },
 ];
 //2a Funcion de Gestion de libros//
-/* 
+
 function addLibro(id, titulo, autor, año, genero) {
   let newLibro = {
     id: id,
@@ -129,9 +129,9 @@ function addLibro(id, titulo, autor, año, genero) {
   libros.push(newLibro);
 }
 addLibro(11, "Ana la de tejas verdes", "Lucy Maud", 1908, "Literatura juvenil");
- */
+
 //2b
-/* function buscarLibro(criterio, valor) {
+function buscarLibro(criterio, valor) {
   criterio = criterio.toLowerCase();
   valor = valor.toLowerCase();
   const libro = libros.find((libro) => {
@@ -147,36 +147,36 @@ addLibro(11, "Ana la de tejas verdes", "Lucy Maud", 1908, "Literatura juvenil");
   return libro ? libro : "No encontrado :(";
 }
 console.log(buscarLibro("titulo", "Lolita"));
-console.log(buscarLibro('genero','biografico')) */
+console.log(buscarLibro("genero", "biografico"));
 //2d
-/* function borrarLibro(id){
-  let indice =libros.findIndex(libro => libro.id === id);
-  if (indice !== -1){
+function borrarLibro(id) {
+  let indice = libros.findIndex((libro) => libro.id === id);
+  if (indice !== -1) {
     libros.splice(indice, 1);
-    console.log(`libro id:${id} eliminado.`)
-  } else{
-    console.log(`el libro solicitado ${id} no se encontro`)
+    console.log(`libro id:${id} eliminado.`);
+  } else {
+    console.log(`el libro solicitado ${id} no se encontro`);
   }
 }
 borrarLibro(1);
-console.log(libros); */
+console.log(libros);
 //3a
-/* function RegistrarUsuario(nombre, email) {
+function RegistrarUsuario(nombre, email) {
   let newUser = {
     nombre: nombre,
     email: email,
   };
   usuarios.push(newUser);
-} */
+}
 //3b Implementar una función mostrarTodosLosUsuarios() que me devuelva el array completo de usuarios
-/* RegistrarUsuario("Laura", "lau@gmail.com");
+RegistrarUsuario("Laura", "lau@gmail.com");
 console.log(usuarios);
-function mostrarTodosLosUsuarios(){
-    return usuarios;
-} 
-console.log(mostrarTodosLosUsuarios());*/
+function mostrarTodosLosUsuarios() {
+  return usuarios;
+}
+console.log(mostrarTodosLosUsuarios());
 //3c Crear una función buscarUsuario(email) que devuelva la información de un usuario dado su email.
-/* function findUserEmail(email) {
+function findUserEmail(email) {
   const usuario = usuarios.find((usuario) => usuario.email === email);
   if (usuario) {
     return usuario;
@@ -184,29 +184,29 @@ console.log(mostrarTodosLosUsuarios());*/
     return "usuario no encontrado";
   }
 }
-console.log(findUserEmail("gaston@hotmail.com")); */
+console.log(findUserEmail("gaston@hotmail.com"));
 //3d Implementar una función borrarUsuario(nombre, email) que elimine el usuario seleccionado.
-/* function borrarUser(nombre, email){
-    let userEliminado = false;
-    while (usuarios.length > 0){
-        if (usuarios[0].nombre === nombre && usuarios[0].email){
-            usuarios.shift();
-            userEliminado= true;
-            console.log(`Usuario ${nombre} eliminado correctamente`);
-            break;
-        } else{
-            usuarios.push(usuarios.shift());
-        }
+function borrarUser(nombre, email) {
+  let userEliminado = false;
+  while (usuarios.length > 0) {
+    if (usuarios[0].nombre === nombre && usuarios[0].email) {
+      usuarios.shift();
+      userEliminado = true;
+      console.log(`Usuario ${nombre} eliminado correctamente`);
+      break;
+    } else {
+      usuarios.push(usuarios.shift());
     }
-if (!userEliminado){
-    console.log('Usuario no encontrado')
+  }
+  if (!userEliminado) {
+    console.log("Usuario no encontrado");
+  }
 }
-}
-borrarUser("Lucia Jones",'lucia@gmail.com');
-console.log(usuarios); */
+borrarUser("Lucia Jones", "lucia@gmail.com");
+console.log(usuarios);
 //4a a)	Desarrollar una función prestarLibro(idLibro, idUsuario) que marque un libro como no disponible y
 // lo agregue a la lista de libros prestados del usuario. Luego mostrar que libro se prestó y a que usuario.
-/* function prestarLibro(idLibro, idUsuario) {
+function prestarLibro(idLibro, idUsuario) {
   let libro = libros.find((libro) => libro.is === idLibro);
   let usuario = usuarios.find((user) => user.id === idUsuario);
   if (!libro) {
@@ -224,43 +224,45 @@ console.log(usuarios); */
   usuario.librosPrestados.push(libro);
   console.log(`el libro ${libro.titulo}fue prestado a ${usuario.nombre}`);
 }
-prestarLibro(1,1);
+prestarLibro(1, 1);
 console.log(usuarios[0]);
- */
+
 //4b b)	Implementar una función devolverLibro(idLibro, idUsuario) que marque un
 // libro como disponible y lo elimine de la lista de libros prestados del usuario.
-/* function devolverLibro(idLibro, idUsuario){
-  let libro= libros.find(libro => libro.id === idLibro);
-  let usuario =usuarios.find(user => user.id === idUsuario);
-  if(!libro){
+function devolverLibro(idLibro, idUsuario) {
+  let libro = libros.find((libro) => libro.id === idLibro);
+  let usuario = usuarios.find((user) => user.id === idUsuario);
+  if (!libro) {
     console.log(`libro ${idLibro} no encontrado`);
     return;
   }
-  if(!usuario){
+  if (!usuario) {
     console.log(`usuario ${idUsuario} mo encontrado`);
     return;
   }
-  let iLibrosPrestados = usuario.librosPrestados.findIndex(libro => libro.id === idLibro);
-  if(iLibrosPrestados === -1){
+  let iLibrosPrestados = usuario.librosPrestados.findIndex(
+    (libro) => libro.id === idLibro
+  );
+  if (iLibrosPrestados === -1) {
     console.log(`el usuario ${usuario.nombre} no tiene el libro ${idLibro}`);
     return;
   }
-usuario.librosPrestados.splice(iLibrosPrestados, 1);
-libro.disponible= true;
-console.log(`El libro ${libro.titulo} lo devolvio ${usuario.nombre}`)
+  usuario.librosPrestados.splice(iLibrosPrestados, 1);
+  libro.disponible = true;
+  console.log(`El libro ${libro.titulo} lo devolvio ${usuario.nombre}`);
 }
 
 devolverLibro(2, 1);
 console.log(usuarios[0]);
 console.log(libros);
- */
+
 /* 5 a)	Crear una función generarReporteLibros() que utilice métodos avanzados de arrays (.map(), .filter(), .reduce()) para generar un reporte con la siguiente información:
 ✔	Cantidad total de librosd.
 ✔	Cantidad de libros prestados.
 ✔	Cantidad de libros por género.
 ✔	Libro más antiguo y más nuevo
  */
-/* function generarReporteLibros() {
+function generarReporteLibros() {
   let totalLibros = libros.length;
   let librosPrestados = libros.filter((libro) => !libro.disponible).length;
   let librosPorGenero = libros.reduce((ac, libro) => {
@@ -278,17 +280,17 @@ console.log(libros);
     librosPorGenero,
     librosPrestados,
     libroMasAntiguo: `${libroMasAntiguo.titulo}(${libroMasAntiguo.anio})`,
-    libroMasNuevo: `${libroMasNuevo.titulo}(${libroMasNuevo.anio})`
+    libroMasNuevo: `${libroMasNuevo.titulo}(${libroMasNuevo.anio})`,
   };
   console.log("Reporte de los libros:");
   console.log(reporte);
   return reporte;
 }
-generarReporteLibros(); */
+generarReporteLibros();
 /* 6 a)	Implementar una función librosConPalabrasEnTitulo() que identifique y muestre 
 los títulos de los libros que contienen más de una palabra. Además la función debe excluir 
 aquellos títulos que contengan números y/o caracteres especiales. Por último mostrar en la consola el array resultante.  */
-/* function librosConPalabrasEnTitulo() {
+function librosConPalabrasEnTitulo() {
   let resultado = libros
     .filter((libro) => {
       if (!libro.titulo) return false;
@@ -303,7 +305,7 @@ aquellos títulos que contengan números y/o caracteres especiales. Por último 
   console.log(resultado);
 }
 librosConPalabrasEnTitulo();
- */
+
 /* 7. Cálculos Estadísticos
 a)	Desarrollar una función calcularEstadisticas() que obtenga información sobre los años
  de publicación de los libros:
@@ -312,8 +314,8 @@ a)	Desarrollar una función calcularEstadisticas() que obtenga información sobr
 ✔	Encontrar el año de publicación más frecuente.
 ✔	Calcular la diferencia en años entre el libro más antiguo y el más nuevo. Para este punto es recomendable usar el objeto Math()
  */
-/* function calcularEstadisticas() {
-  const anios = libros.map(libro => libro.anio);
+function calcularEstadisticas() {
+  const anios = libros.map((libro) => libro.anio);
 
   let suma = 0;
   for (let i = 0; i < anios.length; i++) {
@@ -345,27 +347,74 @@ a)	Desarrollar una función calcularEstadisticas() que obtenga información sobr
   console.log("Años de publicación:", anios);
   console.log("Promedio:", promedio);
   console.log("Año más frecuente:", añoMasFrecuente);
-  console.log("Diferencia entre más antiguo y más nuevo:", diferencia + " años");
+  console.log(
+    "Diferencia entre más antiguo y más nuevo:",
+    diferencia + " años"
+  );
 }
 
 calcularEstadisticas();
-  */
 /* 8a)	Crear una función normalizarDatos() que utilice métodos de strings para:
 ✔	Convertir todos los títulos a mayúsculas.
 ✔	Eliminar espacios en blanco al inicio y final de los nombres de autores.
 ✔	Formatear los emails de los usuarios a minúsculas.
 */
-function normalizarDatos(){
-  for (let i = 0; i < libros.length; i++){
+function normalizarDatos() {
+  for (let i = 0; i < libros.length; i++) {
     libros[i].titulo = libros[i].titulo.toLocaleUpperCase();
     libros[i].autor = libros[i].autor.trim();
   }
-  for(let i = 0; i < usuarios.length; i++){
+  for (let i = 0; i < usuarios.length; i++) {
     usuarios[i].email = usuarios[i].email.toLocaleLowerCase().trim();
   }
-  console.log('libros normalizzados:');
+  console.log("libros normalizados:");
   console.log(libros);
-  console.log('usuarios normalizados:');
+  console.log("usuarios normalizados:");
   console.log(usuarios);
 }
-normalizarDatos(); 
+normalizarDatos();
+
+/* 9a)	Implementar una función menuPrincipal()
+ que muestre un menú de opciones al usuario y permita interactuar con el sistema utilizando prompt(). */
+function menuPrincipal() {
+  let option;
+  while (option !== "0") {
+    option = prompt(
+      "Menu principal:\n" +
+        "1.Ver libros\n" +
+        "2.Ver usuarios\n" +
+        "3.Normalizar datos\n" +
+        "4.Calcular estadisticasn\n" +
+        "5.Generar reporte de libros\n" +
+        "6.Libros con titulos validos\n" +
+        "0.Salir\n\n" +
+        "Elegi una opcion:"
+    );
+    switch (option) {
+      case "1":
+        console.log("Libros:");
+        console.log(libros);
+        break;
+      case "2":
+        console.log("usuarios");
+        console.log(usuarios);
+        break;
+      case "3":
+        normalizarDatos();
+        break;
+      case "4":
+        calcularEstadisticas();
+      case "5":
+        generarReporteLibros();
+        break;
+      case "6":
+        librosConPalabrasEnTitulo();
+      case "0":
+        alert("Nos vemos");
+        break;
+      default:
+        alert("No ha señalado una opcion");
+    }
+  }
+}
+menuPrincipal();
