@@ -69,7 +69,7 @@ const libros = [
     id: 9,
     titulo: "Lo que el viento se llevó",
     autor: "Margaret Mitchell",
-    año: 1963,
+    anio: 1963,
     genero: "Ficcion historica",
     disponible: true,
   },
@@ -288,7 +288,7 @@ generarReporteLibros(); */
 /* 6 a)	Implementar una función librosConPalabrasEnTitulo() que identifique y muestre 
 los títulos de los libros que contienen más de una palabra. Además la función debe excluir 
 aquellos títulos que contengan números y/o caracteres especiales. Por último mostrar en la consola el array resultante.  */
-function librosConPalabrasEnTitulo() {
+/* function librosConPalabrasEnTitulo() {
   let resultado = libros
     .filter((libro) => {
       if (!libro.titulo) return false;
@@ -303,3 +303,50 @@ function librosConPalabrasEnTitulo() {
   console.log(resultado);
 }
 librosConPalabrasEnTitulo();
+ */
+/* 7. Cálculos Estadísticos
+a)	Desarrollar una función calcularEstadisticas() que obtenga información sobre los años
+ de publicación de los libros:
+✔	Obtener un array con los años de publicación de todos los libros.
+✔	Calcular el promedio de los años de publicación.
+✔	Encontrar el año de publicación más frecuente.
+✔	Calcular la diferencia en años entre el libro más antiguo y el más nuevo. Para este punto es recomendable usar el objeto Math()
+ */
+function calcularEstadisticas() {
+  const anios = libros.map(libro => libro.anio);
+
+  let suma = 0;
+  for (let i = 0; i < anios.length; i++) {
+    suma += anios[i];
+  }
+  let promedio = suma / anios.length;
+
+  let frecuencia = {};
+  for (let i = 0; i < anios.length; i++) {
+    let anio = anios[i];
+    if (frecuencia[anio]) {
+      frecuencia[anio]++;
+    } else {
+      frecuencia[anio] = 1;
+    }
+  }
+
+  let añoMasFrecuente = null;
+  let maxRepeticiones = 0;
+  for (let anio in frecuencia) {
+    if (frecuencia[anio] > maxRepeticiones) {
+      maxRepeticiones = frecuencia[anio];
+      añoMasFrecuente = anio;
+    }
+  }
+  let añoMasAntiguo = Math.min(...anios);
+  let añoMasNuevo = Math.max(...anios);
+  let diferencia = añoMasNuevo - añoMasAntiguo;
+  console.log("Años de publicación:", anios);
+  console.log("Promedio:", promedio);
+  console.log("Año más frecuente:", añoMasFrecuente);
+  console.log("Diferencia entre más antiguo y más nuevo:", diferencia + " años");
+}
+
+calcularEstadisticas();
+ 
