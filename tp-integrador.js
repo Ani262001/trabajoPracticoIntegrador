@@ -20,7 +20,7 @@ const libros = [
   {
     id: 3,
     titulo: "Maus",
-    autor: "Art Spiegelman",
+    autor: "    Art Spiegelman",
     anio: 1977,
     genero: "Biografico",
     disponible: true,
@@ -28,7 +28,7 @@ const libros = [
   {
     id: 4,
     titulo: "El mar y la serpiente",
-    autor: "Paula Bombara",
+    autor: "Paula Bombara      ",
     anio: 2005,
     genero: "Novela",
     disponible: false,
@@ -87,31 +87,31 @@ const usuarios = [
   {
     id: 1,
     nombre: "Ana Paz",
-    email: "ana@hotmail.com",
+    email: "ANa@hotmail.com",
     librosPrestados: [1, 2],
   },
   {
     id: 2,
     nombre: "Clara Aranda",
-    email: "clara@gmail.com",
+    email: "CLara@gmail.com",
     librosPrestados: [3, 4],
   },
   {
     id: 3,
     nombre: "Gaston Andrada",
-    email: "gaston@hotmail.com",
+    email: "gastOn@hotmail.com",
     librosPrestados: [5, 6],
   },
   {
     id: 4,
     nombre: "Ernestina Diaz",
-    email: "ernestina@gmail.com",
+    email: "ernesTINA@gmail.com",
     librosPrestados: [7, 8],
   },
   {
     id: 5,
     nombre: "Lucia Jones",
-    email: "lucia@gmail.com",
+    email: "luciA@gmail.com",
     librosPrestados: [9, 10],
   },
 ];
@@ -312,7 +312,7 @@ a)	Desarrollar una función calcularEstadisticas() que obtenga información sobr
 ✔	Encontrar el año de publicación más frecuente.
 ✔	Calcular la diferencia en años entre el libro más antiguo y el más nuevo. Para este punto es recomendable usar el objeto Math()
  */
-function calcularEstadisticas() {
+/* function calcularEstadisticas() {
   const anios = libros.map(libro => libro.anio);
 
   let suma = 0;
@@ -349,4 +349,23 @@ function calcularEstadisticas() {
 }
 
 calcularEstadisticas();
- 
+  */
+/* 8a)	Crear una función normalizarDatos() que utilice métodos de strings para:
+✔	Convertir todos los títulos a mayúsculas.
+✔	Eliminar espacios en blanco al inicio y final de los nombres de autores.
+✔	Formatear los emails de los usuarios a minúsculas.
+*/
+function normalizarDatos(){
+  for (let i = 0; i < libros.length; i++){
+    libros[i].titulo = libros[i].titulo.toLocaleUpperCase();
+    libros[i].autor = libros[i].autor.trim();
+  }
+  for(let i = 0; i < usuarios.length; i++){
+    usuarios[i].email = usuarios[i].email.toLocaleLowerCase().trim();
+  }
+  console.log('libros normalizzados:');
+  console.log(libros);
+  console.log('usuarios normalizados:');
+  console.log(usuarios);
+}
+normalizarDatos(); 
